@@ -1,0 +1,22 @@
+mkvirtualenv --python=/usr/bin/python3.13 studentapi 
+---------------------------
+import sqlite3 
+conn = sqlite3.connect("students.db") 
+conn.execute(""" 
+CREATE TABLE IF NOT EXISTS students ( 
+id INTEGER PRIMARY KEY AUTOINCREMENT, 
+name TEXT NOT NULL, 
+email TEXT NOT NULL, 
+course TEXT NOT NULL 
+) 
+""") 
+conn.commit() 
+conn.close() 
+
+
+------------------
+import sys 
+path = '/home/lavanya/pythonanywhere-demo' 
+if path not in sys.path: 
+sys.path.insert(0, path) 
+from app import app as application 
